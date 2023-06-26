@@ -39,6 +39,8 @@ class _QuizPageState extends State<QuizPage> {
     bool correctAnswer = quizBrain.getCorrectAnswer();
     setState(() {
       if (quizBrain.isFinished()) {
+        quizBrain.reset();
+        scoreKeeper.clear();
         Alert(
           context: context,
           type: AlertType.error,
@@ -51,8 +53,6 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 Navigator.pop(context);
-                scoreKeeper.clear();
-                quizBrain.reset();
               },
               width: 180,
             )
